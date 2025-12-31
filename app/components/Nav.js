@@ -1,43 +1,45 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Nav() {
   return (
-    <nav className="nav">
-      {/* Brand: logo mark + wordmark */}
-      <Link href="/" className="brand-wrapper">
-        <img
-          src="/assets/vitruvia-logo.png"   // <— your actual file path
-          alt="Vitruvia logo"
-          className="brand-logo"
-        />
-        <span className="brand-name">Vitruvia</span>
-      </Link>
+    <header className="nav">
+      <div className="logo">
+        <Link href="/" aria-label="Vitruvia home" className="logo-link">
+          <span className="brand-lockup">
+            <Image
+              src="/assets/vitruvia-logo.png"
+              alt=""
+              width={34}
+              height={34}
+              priority
+            />
+            <span className="brand-wordmark">Vitruvia</span>
+          </span>
+        </Link>
+      </div>
 
-      {/* Right side navigation links */}
-      <div className="nav-right">
-        <Link href="/how-it-works" className="nav-link">
+      <nav className="nav-right" aria-label="Primary navigation">
+        <Link className="nav-link" href="/how-it-works">
           How it works
         </Link>
-        <Link href="/faq" className="nav-link">
+        <Link className="nav-link" href="/faq">
           FAQ
         </Link>
-        <Link href="/privacy" className="nav-link">
+        <Link className="nav-link" href="/privacy">
           Privacy
         </Link>
-        <Link href="/contact" className="nav-link">
+        <Link className="nav-link" href="/contact">
           Contact
         </Link>
-
-        {/* CTA works from every page: goes to homepage CTA section */}
-        <a href="/#early-access" className="nav-link nav-link-primary">
+        <Link className="nav-link nav-link-primary" href="/#get-early-access">
           Get Early Access
-        </a>
-      </div>
-    </nav>
+        </Link>
+      </nav>
+    </header>
   );
 }
+
 
 
 
