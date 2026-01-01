@@ -103,9 +103,10 @@ function Bars() {
 function Heatmap() {
   // Muted heatmap intensity with one hotspot (sample).
   const cells = [
-    0.08, 0.1, 0.12, 0.14, 0.16, 0.14, 0.12, 0.1, 0.1, 0.12, 0.16, 0.22, 0.28,
-    0.22, 0.14, 0.1, 0.12, 0.16, 0.24, 0.4, 0.62, 0.36, 0.2, 0.12, 0.1, 0.12,
-    0.16, 0.26, 0.46, 0.3, 0.18, 0.12,
+    0.08, 0.10, 0.12, 0.14, 0.16, 0.14, 0.12, 0.10,
+    0.10, 0.12, 0.16, 0.22, 0.28, 0.22, 0.14, 0.10,
+    0.12, 0.16, 0.24, 0.40, 0.62, 0.36, 0.20, 0.12,
+    0.10, 0.12, 0.16, 0.26, 0.46, 0.30, 0.18, 0.12,
   ];
 
   return (
@@ -124,8 +125,10 @@ function Heatmap() {
 
 function OverlapBars() {
   /**
-   * Two bars with visible overlap band (sample) to signal uncertainty.
-   * Not implying causation; just a visual comparison.
+   * Two bars (sample).
+   * We removed the "overlap band" layer because it can render as a weird shadow
+   * behind the second bar on some screen sizes/browsers.
+   * Uncertainty is still communicated in the note.
    */
   return (
     <div
@@ -133,19 +136,20 @@ function OverlapBars() {
       role="img"
       aria-label="Sample comparison with overlap"
     >
-      <div className="viz-overlapband" aria-hidden="true" />
       <div className="viz-overlap-row">
         <div className="viz-overlap-label">Vitamin C</div>
         <div className="viz-overlap-track">
           <div className="viz-overlap-fill" style={{ width: "54%" }} />
         </div>
       </div>
+
       <div className="viz-overlap-row">
         <div className="viz-overlap-label">No C</div>
         <div className="viz-overlap-track">
           <div className="viz-overlap-fill is-soft" style={{ width: "60%" }} />
         </div>
       </div>
+
       <div className="viz-overlap-note">Wide overlap in groups (sample)</div>
     </div>
   );
@@ -194,8 +198,7 @@ function InsightCarousel() {
           <div className="insight-grounding">{card.grounding}</div>
 
           <div className="insight-footnote">
-            This reflects patterns observed across anonymized datasets. It does
-            not diagnose or establish causation.
+            This reflects patterns observed across anonymized datasets. It does not diagnose or establish causation.
           </div>
         </div>
       </div>
@@ -216,7 +219,27 @@ function InsightCarousel() {
 }
 
 /* =============================
-   HOME (UNCHANGED OUTSIDE COPY)
+   FIXED-SIZE BULLET DOT (SVG)
+   Prevents inconsistent dot sizing across devices/browsers/CSS.
+============================= */
+
+function BulletDot() {
+  return (
+    <svg
+      width="8"
+      height="8"
+      viewBox="0 0 8 8"
+      aria-hidden="true"
+      focusable="false"
+      style={{ flex: "0 0 8px", marginTop: "6px" }}
+    >
+      <circle cx="4" cy="4" r="3" fill="#FF675E" />
+    </svg>
+  );
+}
+
+/* =============================
+   HOME
 ============================= */
 
 export default function Home() {
@@ -270,7 +293,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FEATURES (UNCHANGED) */}
+        {/* FEATURES */}
         <section className="features">
           <div className="features-inner">
             <h2>One place for your entire health story.</h2>
@@ -281,34 +304,34 @@ export default function Home() {
 
             <div className="features-grid">
               <div className="feature-item">
-                <span className="feature-dot" />
+                <BulletDot />
                 <span>Biometrics from wearables (heart rate, HRV, sleep)</span>
               </div>
               <div className="feature-item">
-                <span className="feature-dot" />
+                <BulletDot />
                 <span>Daily symptoms, mood, and notes</span>
               </div>
               <div className="feature-item">
-                <span className="feature-dot" />
+                <BulletDot />
                 <span>Medications and supplements</span>
               </div>
               <div className="feature-item">
-                <span className="feature-dot" />
+                <BulletDot />
                 <span>Women&apos;s health and cycle patterns</span>
               </div>
               <div className="feature-item">
-                <span className="feature-dot" />
+                <BulletDot />
                 <span>Food and hydration patterns</span>
               </div>
               <div className="feature-item">
-                <span className="feature-dot" />
+                <BulletDot />
                 <span>Basic lab values like A1C, lipids, thyroid</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA (UNCHANGED) */}
+        {/* CTA */}
         <section className="cta" id="get-early-access">
           <div className="cta-inner">
             <h2>Become an early Vitruvia member.</h2>
@@ -338,7 +361,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOOTER (UNCHANGED) */}
+        {/* FOOTER */}
         <footer className="footer">
           <div className="footer-inner">
             <span>© 2025 Vitruvia Health</span>
